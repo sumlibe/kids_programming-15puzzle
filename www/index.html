@@ -208,10 +208,31 @@
                         blocks[no] = blocks[getIndex(px2, py2)];
                         blocks[getIndex(px2, py2)] = -1;
                         drawPuzzle();
+                        checkClear();
                         break;
                     }
                 }
             }
+
+            // ===============================================================
+            // マウスで移動先をクリックした時の処理
+            // ===============================================================
+            function checkClear()
+            {
+                var flag = true;
+                for (var i = 0; i < (NUM_BLOCKS - 1); i++) {
+                    if (blocks[i] != i ) {
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag) {
+                    alert("ゲームクリア！");
+                    initGame();
+                }
+            }
+
+
 
             window.onload = function() {
                 init();
